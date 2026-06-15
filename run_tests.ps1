@@ -1,4 +1,4 @@
-################################################################################
+﻿################################################################################
 # run_tests.ps1
 # 
 # PowerShell script for Windows users to compile and run tests without make.
@@ -27,7 +27,7 @@ Write-Host "Checking for g++ compiler..." -ForegroundColor Yellow
 $gppPath = Get-Command g++ -ErrorAction SilentlyContinue
 if (-not $gppPath) {
     Write-Host ""
-    Write-Host "❌ ERROR: g++ compiler not found!" -ForegroundColor Red
+    Write-Host "[X] ERROR: g++ compiler not found!" -ForegroundColor Red
     Write-Host ""
     Write-Host "g++ is required to compile C++ code." -ForegroundColor Yellow
     Write-Host ""
@@ -41,7 +41,7 @@ if (-not $gppPath) {
     exit 1
 }
 
-Write-Host "✓ g++ found: $($gppPath.Source)" -ForegroundColor Green
+Write-Host "[OK] g++ found: $($gppPath.Source)" -ForegroundColor Green
 Write-Host "Compiling tests..." -ForegroundColor Yellow
 
 # Compile LinkedList tests
@@ -57,7 +57,7 @@ if ($LASTEXITCODE -ne 0) {
 Write-Host "Compiling performance tests..."
 g++ --std=c++17 test_performance.cpp ArrayList.cpp LinkedList.cpp -o test_performance.exe
 if ($LASTEXITCODE -ne 0) {
-    Write-Host "❌ Compilation failed for performance tests" -ForegroundColor Red
+    Write-Host "[X] Compilation failed for performance tests" -ForegroundColor Red
     exit 1
 }
 
@@ -65,11 +65,11 @@ if ($LASTEXITCODE -ne 0) {
 Write-Host "Compiling tail optimization test..."
 g++ --std=c++17 test_tail_optimization.cpp ArrayList.cpp LinkedList.cpp -o test_tail_optimization.exe
 if ($LASTEXITCODE -ne 0) {
-    Write-Host "❌ Compilation failed for tail optimization test" -ForegroundColor Red
+    Write-Host "[X] Compilation failed for tail optimization test" -ForegroundColor Red
     exit 1
 }
 
-Write-Host "✅ All files compiled successfully!" -ForegroundColor Green
+Write-Host "[OK] All files compiled successfully!" -ForegroundColor Green
 Write-Host ""
 
 # Run LinkedList tests
@@ -102,4 +102,4 @@ if ($response -eq "y" -or $response -eq "Y") {
 }
 
 Write-Host ""
-Write-Host "🎉 Done!" -ForegroundColor Green
+Write-Host "Done!" -ForegroundColor Green

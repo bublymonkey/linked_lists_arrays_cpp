@@ -30,6 +30,7 @@ class LinkedList {
         
         int size() const;
         std::string display() const;
+        bool has_cycle() const;
 };
 
 #endif

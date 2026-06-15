@@ -14,7 +14,7 @@ The Makefile automates compilation. Here's what it does:
 - Object files are linked together to create executables
 
 Running `make` creates:
-- `test_correctness` - Unit tests
+- `test_linkedlist` - Unit tests
 - `test_performance` - Performance benchmarks
 - `test_tail_optimization` - Tests the tail pointer optimization
 - `run_all_tests` - Runs correctness then performance tests
@@ -58,11 +58,12 @@ This script will:
 
 ### Option 2: Individual Commands
 
-Copy-paste these commands directly into your terminal:
+Copy-paste these commands directly into your terminal.
 
+**On Mac/Linux:**
 ```bash
 # Test your LinkedList implementation
-g++ --std=c++17 test_correctness.cpp ArrayList.cpp LinkedList.cpp -o test_correctness.out && ./test_correctness.out
+g++ --std=c++17 test_linkedlist.cpp ArrayList.cpp LinkedList.cpp -o test_linkedlist.out && ./test_linkedlist.out
 
 # Run performance comparisons (after correctness passes)
 g++ --std=c++17 test_performance.cpp ArrayList.cpp LinkedList.cpp -o test_performance.out && ./test_performance.out
@@ -70,6 +71,23 @@ g++ --std=c++17 test_performance.cpp ArrayList.cpp LinkedList.cpp -o test_perfor
 # Test tail optimization (after implementing it)
 g++ --std=c++17 test_tail_optimization.cpp ArrayList.cpp LinkedList.cpp -o test_tail_optimization.out && ./test_tail_optimization.out
 ```
+
+**On Windows (PowerShell):**
+```powershell
+# Test your LinkedList implementation
+g++ --std=c++17 test_linkedlist.cpp ArrayList.cpp LinkedList.cpp -o test_linkedlist.exe
+if ($?) { .\test_linkedlist.exe }
+
+# Run performance comparisons (after correctness passes)
+g++ --std=c++17 test_performance.cpp ArrayList.cpp LinkedList.cpp -o test_performance.exe
+if ($?) { .\test_performance.exe }
+
+# Test tail optimization (after implementing it)
+g++ --std=c++17 test_tail_optimization.cpp ArrayList.cpp LinkedList.cpp -o test_tail_optimization.exe
+if ($?) { .\test_tail_optimization.exe }
+```
+
+> **Windows notes:** Windows PowerShell 5.1 doesn't support `&&`, so use `; if ($?) { ... }` to run only after a successful compile. Also use the `.exe` extension on Windows — a `.out` file won't run by double-clicking and Windows tries to *open* it instead.
 
 ### Option 3: VSCode Tasks (Most Integrated)
 
@@ -108,7 +126,7 @@ rm -f *.out *.csv *.png
 
 ### Or run individually:
 ```bash
-./test_correctness
+./test_linkedlist
 ./test_performance
 ./test_tail_optimization
 ```

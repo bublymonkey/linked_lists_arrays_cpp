@@ -31,7 +31,7 @@ Copy and paste these into your terminal:
 
 #### Test Your Implementation
 ```bash
-g++ --std=c++17 test_correctness.cpp ArrayList.cpp LinkedList.cpp -o test_correctness.out && ./test_correctness.out
+g++ --std=c++17 test_linkedlist.cpp ArrayList.cpp LinkedList.cpp -o test_linkedlist.out && ./test_linkedlist.out
 ```
 
 #### Run Performance Tests
@@ -50,8 +50,8 @@ Copy and paste these into PowerShell:
 
 #### Test Your Implementation
 ```powershell
-g++ --std=c++17 test_correctness.cpp ArrayList.cpp LinkedList.cpp -o test_correctness.exe
-if ($?) { .\test_correctness.exe }
+g++ --std=c++17 test_linkedlist.cpp ArrayList.cpp LinkedList.cpp -o test_linkedlist.exe
+if ($?) { .\test_linkedlist.exe }
 ```
 
 #### Run Performance Tests

@@ -5,7 +5,7 @@
     // 
     // To use:
     //   - Press Cmd+Shift+B (Mac) or Ctrl+Shift+B (Windows/Linux) to run the default task (Test Correctness)
-    //   - Press Cmd+Shift+P → "Tasks: Run Task" to choose a specific task
+    //   - Press Cmd+Shift+P -> "Tasks: Run Task" to choose a specific task
     // 
     // Available tasks:
     //   - Test Correctness: Compile and run correctness tests (default)
@@ -13,8 +13,8 @@
     //   - Test Tail Optimization: Compile and run tail optimization test
     //   - Clean: Remove all compiled files and CSV results
     //
-    // Note: These tasks compile but don't automatically run. After compiling,
-    //       run the executable manually (e.g., ./test_correctness.out or .\test_correctness.exe)
+    // Note: On Windows the tasks run in PowerShell, so they use "; if ($?) { ... }"
+    //       instead of "&&" (which Windows PowerShell 5.1 does not support).
     
     "version": "2.0.0",
     "tasks": [
@@ -22,13 +22,13 @@
             "label": "Test Correctness",
             "type": "shell",
             "windows": {
-                "command": "g++ --std=c++17 test_correctness.cpp ArrayList.cpp LinkedList.cpp -o test_correctness.exe && .\\test_correctness.exe"
+                "command": "g++ --std=c++17 test_linkedlist.cpp ArrayList.cpp LinkedList.cpp -o test_linkedlist.exe; if ($?) { .\\test_linkedlist.exe }"
             },
             "linux": {
-                "command": "g++ --std=c++17 test_correctness.cpp ArrayList.cpp LinkedList.cpp -o test_correctness.out && ./test_correctness.out"
+                "command": "g++ --std=c++17 test_linkedlist.cpp ArrayList.cpp LinkedList.cpp -o test_linkedlist.out && ./test_linkedlist.out"
             },
             "osx": {
-                "command": "g++ --std=c++17 test_correctness.cpp ArrayList.cpp LinkedList.cpp -o test_correctness.out && ./test_correctness.out"
+                "command": "g++ --std=c++17 test_linkedlist.cpp ArrayList.cpp LinkedList.cpp -o test_linkedlist.out && ./test_linkedlist.out"
             },
             "group": {
                 "kind": "build",
@@ -46,7 +46,7 @@
             "label": "Test Performance",
             "type": "shell",
             "windows": {
-                "command": "g++ --std=c++17 test_performance.cpp ArrayList.cpp LinkedList.cpp -o test_performance.exe && .\\test_performance.exe"
+                "command": "g++ --std=c++17 test_performance.cpp ArrayList.cpp LinkedList.cpp -o test_performance.exe; if ($?) { .\\test_performance.exe }"
             },
             "linux": {
                 "command": "g++ --std=c++17 test_performance.cpp ArrayList.cpp LinkedList.cpp -o test_performance.out && ./test_performance.out"
@@ -66,7 +66,7 @@
             "label": "Test Tail Optimization",
             "type": "shell",
             "windows": {
-                "command": "g++ --std=c++17 test_tail_optimization.cpp ArrayList.cpp LinkedList.cpp -o test_tail_optimization.exe && .\\test_tail_optimization.exe"
+                "command": "g++ --std=c++17 test_tail_optimization.cpp ArrayList.cpp LinkedList.cpp -o test_tail_optimization.exe; if ($?) { .\\test_tail_optimization.exe }"
             },
             "linux": {
                 "command": "g++ --std=c++17 test_tail_optimization.cpp ArrayList.cpp LinkedList.cpp -o test_tail_optimization.out && ./test_tail_optimization.out"

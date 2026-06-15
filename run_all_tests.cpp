@@ -5,23 +5,23 @@ using namespace std;
 
 int main() {
     cout << R"(
-    ╔═══════════════════════════════════════════════════════════╗
-    ║     DATA STRUCTURES PERFORMANCE COMPARISON                ║
-    ║     ArrayList vs LinkedList                               ║
-    ╚═══════════════════════════════════════════════════════════╝
+    ============================================================
+         DATA STRUCTURES PERFORMANCE COMPARISON
+         ArrayList vs LinkedList
+    ============================================================
     )" << endl;
-    
+
     // Run correctness tests
     cout << "Running correctness tests..." << endl;
-    int correctness_result = system("./test_correctness");
-    
+    int correctness_result = system("./test_linkedlist");
+
     if (correctness_result != 0) {
-        cout << "\n⚠️  Correctness tests failed. Please fix errors before continuing." << endl;
+        cout << "\n[!] Correctness tests failed. Please fix errors before continuing." << endl;
         return 1;
     }
-    
+
     // Ask before running performance tests
-    cout << "\n✅ Correctness tests passed! Run performance tests? (y/n): ";
+    cout << "\n[OK] Correctness tests passed! Run performance tests? (y/n): ";
     char response;
     cin >> response;
     
@@ -33,7 +33,7 @@ int main() {
     // Run performance tests
     system("./test_performance");
     
-    cout << "\n🎉 All tests complete!" << endl;
+    cout << "\n[OK] All tests complete!" << endl;
     
     return 0;
 }

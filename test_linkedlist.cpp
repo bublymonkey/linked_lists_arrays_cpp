@@ -31,6 +31,19 @@ void segfault_handler(int signal) {
     exit(1);
 }
 
+bool run_cycle_check(const LinkedList& ll, const std::string& description) {
+    current_test_name = description;
+
+    if (ll.has_cycle()) {
+        cout << "[X] " << description << " — cycle detected" << endl;
+        cout << "    This usually means a node's next pointer was linked incorrectly." << endl;
+        return false;
+    } else {
+        cout << "[✓] " << description << " — no cycle detected" << endl;
+        return true;
+    }
+}
+
 // Test helper that shows expected vs actual
 bool run_test(function<bool()> test_func, const string& description, const string& expected = "", const string& actual = "") {
     current_test_name = description;

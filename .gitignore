@@ -1,6 +1,6 @@
 # Compiled files (make)
 *.o
-test_correctness
+test_linkedlist
 test_performance
 test_tail_optimization
 run_all_tests

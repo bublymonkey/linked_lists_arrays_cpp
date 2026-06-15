@@ -5,7 +5,7 @@ CXXFLAGS = -std=c++17 -Wall -Wextra -O2
 OBJS = ArrayList.o LinkedList.o
 
 # Executables
-TARGETS = test_correctness test_performance test_tail_optimization run_all_tests
+TARGETS = test_linkedlist test_performance test_tail_optimization run_all_tests
 
 all: $(TARGETS)
 
@@ -17,8 +17,8 @@ LinkedList.o: LinkedList.cpp LinkedList.h
 	$(CXX) $(CXXFLAGS) -c LinkedList.cpp
 
 # Build executables
-test_correctness: test_correctness.cpp $(OBJS)
-	$(CXX) $(CXXFLAGS) -o test_correctness test_correctness.cpp $(OBJS)
+test_linkedlist: test_linkedlist.cpp $(OBJS)
+	$(CXX) $(CXXFLAGS) -o test_linkedlist test_linkedlist.cpp $(OBJS)
 
 test_performance: test_performance.cpp $(OBJS)
 	$(CXX) $(CXXFLAGS) -o test_performance test_performance.cpp $(OBJS)
