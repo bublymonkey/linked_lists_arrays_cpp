@@ -69,6 +69,27 @@ int LinkedList::insert_at(int index, int value) {
 }
 
 std::pair<int, int> LinkedList::get(int index) {
+    
+    int operations = 0;
+    
+    if (head == nullptr){
+        return {-1,operations};
+    }
+    Node* current = head;
+    int currentIndex = 0;
+
+    while(current != nullptr){
+        operations++;
+
+        if (currentIndex == index){
+            return {current->data,operations};
+        }
+        current = current->next;
+        currentIndex++;
+    }
+    return{-1,operations};
+
+
     /*
      * Get value at given index.
      * Return (value, operations) or (-1, operations) if out of bounds.
