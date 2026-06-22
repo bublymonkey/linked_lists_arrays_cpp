@@ -14,6 +14,27 @@ LinkedList::~LinkedList() {
 }
 
 int LinkedList::append(int value) {
+    int operations = 0;
+    if (head == nullptr)
+    {
+        head = new Node(value);
+        _size +=1;
+        return 1;
+    }
+    else
+    {
+        Node* current = head;
+        while(current->next != nullptr){
+            current = current->next;
+            operations += 1;
+        }
+        current->next = new Node(value);
+        _size +=1;
+        operations +=1;
+        return operations; 
+
+
+    }
     /*
      * Add value to the end of the list.
      * Return number of operations (traversals + insertion).
