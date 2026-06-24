@@ -82,7 +82,8 @@ int LinkedList::insert_at(int index, int value) {
              return {-1};
          }
          
-            
+        current = current->next;
+        currentIndex++;
         }
         if (currentIndex == index -1 ){
             Node* temp = current->next;
@@ -90,8 +91,7 @@ int LinkedList::insert_at(int index, int value) {
             current->next = node2;
             node2->next = temp;
             _size++;
-        current = current->next;
-        currentIndex++;
+
     }
 
 
@@ -139,7 +139,29 @@ std::pair<int, int> LinkedList::get(int index) {
 }
 
 std::pair<int, int> LinkedList::search(int value) {
+    int operations = 0;
+    int index = 0;
+    Node* current = head;
+    if (head == nullptr){
+        return {-1,0};
+    }
+    while(value != current->data && current->next != nullptr)
+    {
+        current = current->next;
+        operations++;
+        index++;
+
+        
+
+    }
+    if (current->data == value)
+    {
+        return {index,operations};
+    }
+
+
     /*
+    
      * Search for value in the list.
      * Return (index, operations) or (-1, operations) if not found.
      * 
@@ -150,6 +172,38 @@ std::pair<int, int> LinkedList::search(int value) {
 }
 
 std::pair<bool, int> LinkedList::remove(int value) {
+    int opertations = 0;
+    Node* current = head;
+    if(current == nullptr){
+        return {false,1};
+    }
+    if(current->data == value and current->next != nullptr){
+        head = head->next;
+        delete current;
+        _size--;
+        return {true,1};
+
+    }
+     else if(current->data == value){
+         delete current;
+         _size--;
+         return {true,1};
+    }
+
+      while (current->next != nullptr) {
+        operations++;
+
+        if (current->next->data == value) {
+            Node* temp = current->next;
+            current->next = temp->next;
+            delete temp;
+            _size--;
+            return {true, operations};
+        }
+
+        current = current->next;
+    
+
     /*
      * Delete the first occurrence of value.
      * Return (success, operations).
@@ -160,7 +214,7 @@ std::pair<bool, int> LinkedList::remove(int value) {
     // TODO: Implement this
     return {false, 0};
 }
-
+}
 int LinkedList::size() const {
     return _size;
 }
