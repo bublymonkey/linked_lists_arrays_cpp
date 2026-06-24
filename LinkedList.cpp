@@ -47,6 +47,14 @@ int LinkedList::append(int value) {
 }
 
 int LinkedList::prepend(int value) {
+    
+    Node* node1 = new Node(value);
+    node1->next = head;
+    head = node1;
+    _size +=1;
+    return 1;
+
+
     /*
      * Add value to the beginning of the list.
      * Return number of operations.
@@ -54,10 +62,40 @@ int LinkedList::prepend(int value) {
      * Hint: This should be O(1) - just update the head!
      */
     // TODO: Implement this
-    return 0;
 }
 
 int LinkedList::insert_at(int index, int value) {
+    int currentIndex = 0;
+    int operations = 0;
+    Node* current = head;
+    if (index == 0){
+        Node* node1 = new Node(value);
+        node1->next = head;
+        head = node1;
+        _size +=1;
+        return 1;
+    }
+    while(currentIndex != index -1){
+        
+        operations++;
+        if(current->next == nullptr){
+             return {-1};
+         }
+         
+            
+        }
+        if (currentIndex == index -1 ){
+            Node* temp = current->next;
+            Node* node2 = new Node(value);
+            current->next = node2;
+            node2->next = temp;
+            _size++;
+        current = current->next;
+        currentIndex++;
+    }
+
+
+    
     /*
      * Insert value at the given index (0-indexed).
      * Return number of operations (traversals + insertion).
