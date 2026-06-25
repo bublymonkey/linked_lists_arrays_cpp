@@ -172,25 +172,21 @@ std::pair<int, int> LinkedList::search(int value) {
 }
 
 std::pair<bool, int> LinkedList::remove(int value) {
-    int opertations = 0;
+    int operations = 0;
     Node* current = head;
-    if(current == nullptr){
-        return {false,1};
+
+    if (current == nullptr) {
+        return {false, 1};
     }
-    if(current->data == value and current->next != nullptr){
-        head = head->next;
+
+    if (current->data == value) {
+        head = current->next; 
         delete current;
         _size--;
-        return {true,1};
-
-    }
-     else if(current->data == value){
-         delete current;
-         _size--;
-         return {true,1};
+        return {true, 1};
     }
 
-      while (current->next != nullptr) {
+    while (current->next != nullptr) {
         operations++;
 
         if (current->next->data == value) {
@@ -202,6 +198,10 @@ std::pair<bool, int> LinkedList::remove(int value) {
         }
 
         current = current->next;
+    }
+
+    return {false, operations};
+}
     
 
     /*
@@ -212,9 +212,8 @@ std::pair<bool, int> LinkedList::remove(int value) {
      * Don't forget to delete the removed node to avoid memory leaks!
      */
     // TODO: Implement this
-    return {false, 0};
-}
-}
+
+
 int LinkedList::size() const {
     return _size;
 }
